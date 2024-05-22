@@ -7,17 +7,25 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Enables writing and storing patient data to a text file
+ */
 public class FileOutputStrategy implements OutputStrategy {
 
   private String baseDirectory;
-
   public final ConcurrentHashMap<String, String> file_map = new ConcurrentHashMap<>();
-
   public FileOutputStrategy(String baseDirectory) {
     this.baseDirectory = baseDirectory;
   }
 
-  @Override
+  /**
+   * Write relevant patient data to the file at the specified directory.
+   * @param patientId: arbitrary patient ID
+   * @param timestamp: current time (for example system time)
+   * @param label: data label, provides context for the data
+   * @param data: relevant data.
+   * @throws IOException: if file cannot be created, for example the path name is invalid
+   */
   public void output(int patientId, long timestamp, String label, String data) {
     try {
       // Create the directory

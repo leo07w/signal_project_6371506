@@ -4,13 +4,22 @@ import java.util.Random;
 
 import com.cardio_generator.outputs.OutputStrategy;
 
+/**
+ * Generates and stores 3 random blood levels for a specified number of patients.
+ * Patients' IDs are also patient indexes.
+ */
 public class BloodLevelsDataGenerator implements PatientDataGenerator {
   private static final Random random = new Random();
   private final double[] baselineCholesterol;
   private final double[] baselineWhiteCells;
   private final double[] baselineRedCells;
 
+  /**
+   * Constructor for BloodLevelsDataGenerator, generates blood levels data for a specified number of patients.
+   * @param patientCount
+   */
   public BloodLevelsDataGenerator(int patientCount) {
+
     // Initialize arrays to store baseline values for each patient
     baselineCholesterol = new double[patientCount + 1];
     baselineWhiteCells = new double[patientCount + 1];
@@ -24,6 +33,13 @@ public class BloodLevelsDataGenerator implements PatientDataGenerator {
     }
   }
 
+  /**
+   * Adds noise to patient blood levels readings and outputs the noisy data for a patient.
+   * Specifies how this data should be output.
+   * @param patientId: arbitrary patient ID number.
+   * @param outputStrategy: strategy to output data, such as writing to a file, printing to console, etc.
+   * @throws Exception: if an error occurs while updating and/or outputting patient data, general exception
+   */
   @Override
   public void generate(int patientId, OutputStrategy outputStrategy) {
     try {
