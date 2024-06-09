@@ -34,14 +34,10 @@ public class HealthDataSimulator {
   private static final Random random = new Random();
 
   public static void main(String[] args) throws IOException {
-
     parseArguments(args);
-
     scheduler = Executors.newScheduledThreadPool(patientCount * 4);
-
     List<Integer> patientIds = initializePatientIds(patientCount);
     Collections.shuffle(patientIds); // Randomize the order of patient IDs
-
     scheduleTasksForPatients(patientIds);
   }
 
